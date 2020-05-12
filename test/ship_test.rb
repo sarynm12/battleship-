@@ -20,6 +20,10 @@ class ShipTest < Minitest::Test
   def test_it_has_health_points_that_equal_length
     assert_equal 3, @cruiser.health
   end
+
+  def test_it_starts_not_sunk
+    assert_equal false, @cruiser.sunk?
+  end
 end
 
   # pry(main)> cruiser.sunk?
