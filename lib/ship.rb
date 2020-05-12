@@ -5,3 +5,4 @@ class Ship
     @name = name
     @length = length
   end
+end
