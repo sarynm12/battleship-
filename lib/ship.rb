@@ -16,4 +16,8 @@ class Ship
       true
     end
   end
+
+  def hit
+    @health -= 1
+  end
 end
