@@ -23,11 +23,13 @@ class CellTest < Minitest::Test
   end
 
   def test_it_can_hold_ship
-    assert_equal false, @cell.place_ship
+    cruiser = Ship.new("Cruiser", 3)
+    @cell.place_ship(cruiser)
+    assert_equal cruiser, @cell.ship
   end
 
   def test_it_knows_it_has_been_fired_upon
-    skip 
+    skip
     assert_equal false, @cell.fired_upon?
     @cell.fire_upon
     assert_equal true, @cell.fired_upon?
