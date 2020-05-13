@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
 require './lib/cell'
+require 'pry'
 
 class CellTest < Minitest::Test
 
@@ -20,6 +21,16 @@ class CellTest < Minitest::Test
   def test_it_starts_with_no_ship
     assert_equal nil, @cell.ship
   end
+
+  def test_it_knows_when_it_is_empty
+    assert_equal true, @cell.empty?
+  end
+
+
+
+
+
+
 end
 
 
@@ -36,3 +47,17 @@ end
 #
 # pry(main)> cell.empty?
 # # => false
+
+
+
+
+# pry(main)> cell.fired_upon?
+# # => false
+#
+# pry(main)> cell.fire_upon
+#
+# pry(main)> cell.ship.health
+# # => 2
+#
+# pry(main)> cell.fired_upon?
+# # => true
