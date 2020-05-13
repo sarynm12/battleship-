@@ -16,15 +16,13 @@ class CellTest < Minitest::Test
   def test_it_can_read_coordinate
     assert_equal "B4", @cell.coordinate
   end
+
+  def test_it_starts_with_no_ship
+    assert_equal nil, @cell.ship
+  end
 end
 
 
-
-
-
-# pry(main)> cell.ship
-# # => nil
-#
 # pry(main)> cell.empty?
 # # => true
 #
