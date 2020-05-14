@@ -27,10 +27,18 @@ class Cell
     end
   end
 
-  def render
-    if @fired_upon == false
+  def render(optional = false)
+    if @fired_upon == false && empty? == false && optional == true
+      "S"
+    elsif @fired_upon == false
       "."
-    end 
+    elsif @fired_upon == true && empty? == true
+      "M"
+    elsif @ship.sunk? == true
+      "X"
+    elsif @fired_upon == true && empty? == false
+      "H"
+    end
   end
 end
 

@@ -56,48 +56,51 @@ class CellTest < Minitest::Test
     assert_equal ".", cell_1.render
   end
 
-end
+  def test_it_can_render_M_if_fired_upon_but_no_ship
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+    assert_equal "M", cell_1.render
+  end
 
-# pry(main)> cell_1 = Cell.new("B4")
-# # => #<Cell:0x00007f84f11df920...>
-#
-# pry(main)> cell_1.render
-# # => "."
-#
-# pry(main)> cell_1.fire_upon
-#
-# pry(main)> cell_1.render
-# # => "M"
-#
-# pry(main)> cell_2 = Cell.new("C3")
-# # => #<Cell:0x00007f84f0b29d10...>
-#
-# pry(main)> cruiser = Ship.new("Cruiser", 3)
-# # => #<Ship:0x00007f84f0ad4fb8...>
-#
-# pry(main)> cell_2.place_ship(cruiser)
-#
-# pry(main)> cell_2.render
-# # => "."
-#
-# # Indicate that we want to show a ship with the optional argument
-# pry(main)> cell_2.render(true)
-# # => "S"
-#
-# pry(main)> cell_2.fire_upon
-#
-# pry(main)> cell_2.render
-# # => "H"
-#
-# pry(main)> cruiser.sunk?
-# # => false
-#
-# pry(main)> cruiser.hit
-#
-# pry(main)> cruiser.hit
-#
-# pry(main)> cruiser.sunk?
-# # => true
-#
-# pry(main)> cell_2.render
-# # => "X"
+  def test_it_can_render_with_ship
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    assert_equal ".", cell_2.render
+  end
+
+  def test_it_can_render_s_with_optional_argument
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    assert_equal "S", cell_2.render(true)
+  end
+
+  def test_it_can_render_H_when_hit
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    assert_equal "H", cell_2.render
+  end
+
+  def test_it_starts_unsunk
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    assert_equal false, cruiser.sunk?
+  end
+
+  def test_it_renders_sunken_ship
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    cruiser.hit
+    cruiser.hit
+    assert_equal true, cruiser.sunk?
+    assert_equal "X", cell_2.render
+  end
+
+end
