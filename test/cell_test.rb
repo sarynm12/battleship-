@@ -18,28 +18,42 @@ class CellTest < Minitest::Test
     assert_equal "B4", @cell.coordinate
   end
 
+  def test_it_starts_with_no_ship
+    assert_nil @cell.ship
+  end
+
   def test_it_starts_empty
     assert_equal true, @cell.empty?
   end
 
-  def test_it_can_hold_ship
+  def test_it_can_place_and_hold_a_ship
     cruiser = Ship.new("Cruiser", 3)
     @cell.place_ship(cruiser)
     assert_equal cruiser, @cell.ship
     assert_equal false, @cell.empty?
   end
 
-  def test_it_knows_it_has_been_fired_upon
+  def test_it_starts_not_fired_upon
     cruiser = Ship.new("Cruiser", 3)
     @cell.place_ship(cruiser)
     assert_equal false, @cell.fired_upon?
-    # @cell.fire_upon
-    # assert_equal true, @cell.fired_upon?
+  end
+
+  def test_it_can_be_fired_upon
+    @cell.fire_upon
+    assert_equal true, @cell.fired_upon?
+  end
+
+  def test_ship_health_declines_after_fire_upon_method
+    cruiser = Ship.new("Cruiser", 3)
+    @cell.place_ship(cruiser)
+    @cell.fire_upon 
+    assert_equal 2, @cell.ship.health
   end
 end
 
 
-# 
+#
 # pry(main)> cell.place_ship(cruiser)
 #
 # pry(main)> cell.fired_upon?

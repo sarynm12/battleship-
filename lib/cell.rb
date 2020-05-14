@@ -16,13 +16,17 @@ class Cell
     @ship = ship
   end
 
-  # def fire_upon
-  #
-  # end
-
   def fired_upon?
     @fired_upon
   end
+
+  def fire_upon
+    @fired_upon = true
+    if empty? == false
+      @ship.hit
+    end
+  end
+
 
 end
 
