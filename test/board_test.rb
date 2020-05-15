@@ -19,7 +19,8 @@ class BoardTest < Minitest::Test
     # it should have 16 key/value pairs, and those keys point to cell objects.
 
     assert_instance_of Hash, @board.cells
-    # assert_equal 16, @board.cells.count
-    # assert_equal Cell, @cells["A1"]
+    assert_equal 16, @board.cells.count
+    assert_instance_of Cell, @board.cells["A1"]
+    assert_instance_of Cell, @board.cells["B4"]
   end
 end
