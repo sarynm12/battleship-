@@ -33,17 +33,6 @@ class CellTest < Minitest::Test
     assert_equal false, @cell.empty?
   end
 
-  def test_it_knows_when_it_is_empty
-    assert_equal true, @cell.empty?
-  end
-
-
-
-
-
-
-end
-
   def test_it_starts_not_fired_upon
     cruiser = Ship.new("Cruiser", 3)
     @cell.place_ship(cruiser)

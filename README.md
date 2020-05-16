@@ -1,5 +1,6 @@
 http://www.jessespevack.com/blog/2016/7/21/all-your-battleship-are-belong-to-us
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 class Ship
   attr_reader :name,
@@ -119,5 +120,7 @@ class ShipTest < Minitest::Test
   def test_it_is_sunk_with_one_health_point
     assert_equal false, @cruiser.sunk?
   end
+=======
+>>>>>>> 981e2df0567b007d9148a9060a705f18d66963cb
 =======
 >>>>>>> 981e2df0567b007d9148a9060a705f18d66963cb

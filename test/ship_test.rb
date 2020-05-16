@@ -1,3 +1,4 @@
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/ship'
@@ -48,4 +49,3 @@ class ShipTest < Minitest::Test
     assert_equal true, @cruiser.sunk?
   end
 end
-
