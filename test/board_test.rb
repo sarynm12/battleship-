@@ -32,7 +32,6 @@ class BoardTest < Minitest::Test
   def test_it_has_same_number_of_coordinates_as_ship_length
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-
     assert_equal false, @board.valid_placement?(cruiser, ["A1", "A2"])
     assert_equal true, @board.valid_placement?(cruiser, ["B1", "B2", "B3"])
     assert_equal false, @board.valid_placement?(submarine, ["A2", "A3", "A4"])
@@ -42,7 +41,6 @@ class BoardTest < Minitest::Test
   def test_it_has_consecutive_and_ascending_coordinates
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-
     assert_equal false, @board.valid_placement?(cruiser, ["A1", "A2", "A4"])
     assert_equal false, @board.valid_placement?(submarine, ["A1", "C1"])
     assert_equal false, @board.valid_placement?(cruiser, ["A3", "A2", "A1"])
@@ -52,7 +50,6 @@ class BoardTest < Minitest::Test
   def test_coordinates_cannot_be_diagonal_and_previous_tests_pass
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-
     assert_equal false, @board.valid_placement?(cruiser, ["A1", "B2", "C3"])
     assert_equal false, @board.valid_placement?(submarine, ["C2", "D3"])
     assert_equal true, @board.valid_placement?(submarine, ["A1", "A2"])
@@ -71,4 +68,10 @@ class BoardTest < Minitest::Test
     assert_equal true, cell_3.ship == cell_2.ship
   end
 
+  def test_it_does_not_let_ships_overlap
+    cruiser = Ship.new("Cruiser", 3)
+    @board.place(cruiser, ["A1", "A2", "A3"])
+    submarine = Ship.new("Submarine", 2)
+    assert_equal false, @board.valid_placement?(submarine, ["A1", "B1"])
+  end
 end

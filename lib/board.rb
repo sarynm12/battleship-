@@ -33,6 +33,8 @@ class Board
       false
     elsif !coordinates_consecutive?(coordinates)
       false
+    elsif coordinates.map {|coordinate| @cells[coordinate].empty?}.any?(false)
+      false
     else
       true
     end
@@ -59,7 +61,6 @@ class Board
       coordinates.map do |coordinate|
         @cells[coordinate].place_ship(ship)
       end
-    end 
+    end
   end
-
 end
