@@ -74,4 +74,19 @@ class BoardTest < Minitest::Test
     submarine = Ship.new("Submarine", 2)
     assert_equal false, @board.valid_placement?(submarine, ["A1", "B1"])
   end
+
+  def test_it_can_render
+    cruiser = Ship.new("Cruiser", 3)
+    @board.place(cruiser, ["A1", "A2", "A3"])
+    assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @board.render 
+  end
 end
+
+
+
+
+# pry(main)> board.render
+# # => "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+#
+# pry(main)> board.render(true)
+# # => "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n"
