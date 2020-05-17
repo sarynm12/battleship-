@@ -80,13 +80,13 @@ class BoardTest < Minitest::Test
     @board.place(cruiser, ["A1", "A2", "A3"])
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @board.render 
   end
+
+  def test_it_has_valid_ship_placement
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal false, @board.valid_placement?(cruiser, ["A1", "A2"])
+  end
 end
 
 
-
-
-# pry(main)> board.render
-# # => "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
-#
-# pry(main)> board.render(true)
-# # => "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n"
