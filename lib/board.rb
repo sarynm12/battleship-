@@ -1,4 +1,3 @@
-
 require './lib/cell'
 
 class Board
@@ -30,5 +29,45 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+
+    if ship.length != coordinates.length
+      false
+    elsif !coordinates_consecutive?(coordinates)
+      false
+    elsif coordinates.map {|coordinate| @cells[coordinate].empty?}.any?(false)
+      false
+    else
+      true
+    end
   end
-end
+
+  def coordinates_consecutive?(coordinates)
+    letters = []
+    numbers = []
+    coordinates.each do |coordinate|
+      letters << coordinate.slice(0)
+      numbers << coordinate.slice(1).to_i
+    end
+    if letters.uniq.count == 1 && (numbers.sort == numbers)
+      (numbers[0]..numbers[-1]).to_a.length == numbers.length
+    elsif numbers.uniq.count == 1 && (letters.sort == letters)
+      (letters[0]..letters[-1]).to_a.length == letters.length
+    else
+      false
+    end
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.map do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+    end
+  end
+
+  def render
+    
+  end
+
+
+  end
