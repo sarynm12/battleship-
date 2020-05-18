@@ -15,4 +15,12 @@ class GameTest < Minitest::Test
   def test_it_exists
     assert_instance_of Game, @game
   end
+
+  def test_it_starts_by_printing_welcome_message
+    expected = "Welcome to BATTLESHIP \n" +
+               "Enter p to play. Enter q to quit.\n >"
+    assert_equal expected, @game.welcome
+    assert_equal expected, @game.start
+  end
+
 end
