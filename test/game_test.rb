@@ -23,4 +23,9 @@ class GameTest < Minitest::Test
     assert_equal expected, @game.start
   end
 
+  def test_it_can_respond_to_invalid_input
+    @game.start
+    expected = "Invalid input, try again: \n" + ">"
+    assert_equal expected, @game.setup
+  end
 end
