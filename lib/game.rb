@@ -1,4 +1,5 @@
 require './lib/board'
+require './lib/turn'
 require 'pry'
 
 class Game
@@ -37,8 +38,8 @@ class Game
     elsif @user_input == "p"
       computer_place_ships
       user_place_ships
-      #user_board = @board.place(ship, coordinates)
     #play_game
+    end
   end
 
   def computer_place_ships
@@ -100,15 +101,15 @@ class Game
     @user_board.place(@user_submarine, @user_submarine_coordinates)
   end
 
-  def turn
+  def play_game
+    # turn = Turn.new
+    # turn.take_turn
+    # if aflsjld
+    #   turn
+    # elsif
+    # end_game
 
   end
-
-
-
-  # def play_game
-  #
-  # end
 
 
 end
