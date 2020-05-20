@@ -112,7 +112,3 @@ class Game
 
 
 end
-
-
-# def initialize(player_info)
-#   @ships = player_info[:ships]
