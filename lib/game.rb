@@ -101,14 +101,31 @@ class Game
   end
 
   def turn
-
+    # computer_place_ships
+    # user_place_ships
+  puts "=============COMPUTER BOARD============="
+  puts @computer_board.render
+  puts puts "=============USER BOARD============="
+  puts @user_board.render(true)
+  puts "Enter the coordinate for your shot:"
+   puts ">"
+   loop do
+     user_target_coordinates = gets.chomp
+     if @computer_board.valid_placement (user_target_coordinates) == false
+       puts "Invalid coordinates. Please try again."
+       puts ">"
+     elsif coordinates have already been fired_upon?
+       puts "Coordinates already fired upon."
+       puts ">"
+     else
+       break
+     end
+     @computer_board.cells[user_target_coordinates].fire_upon 
   end
+
+end
 
 
 
   # def play_game
   #
-  # end
-
-
-end
