@@ -2,13 +2,21 @@ require './lib/ship'
 
 class Turn
 
-  attr_reader :computer_board, :user_board, :computer_cruiser, :computer_sub, :user_cruiser, :user_sub
+  attr_reader :computer_board,
+              :user_board,
+              :computer_cruiser,
+              :computer_sub,
+              :user_cruiser,
+              :user_sub,
+              :computer_message
 
-  def initialize
-    @computer_cruiser = Ship.new("Cruiser", 3)
-    @computer_sub = Ship.new("Submarine", 2)
-    @user_cruiser = Ship.new("Cruiser", 3)
-    @user_sub = Ship.new("Submarine", 2)
+  def initialize(computer_board, user_board)
+    @computer_board = computer_board
+    @user_board = user_board
+  #   @computer_cruiser = Ship.new("Cruiser", 3)
+  #   @computer_sub = Ship.new("Submarine", 2)
+  #   @user_cruiser = Ship.new("Cruiser", 3)
+  #   @user_sub = Ship.new("Submarine", 2)
   end
 
   def take_turn
@@ -53,11 +61,11 @@ class Turn
 
   def user_board_render
     if @user_board.cells[@computer_shot].render == "M"
-      computer_message = "was a miss"
+      @computer_message = "was a miss"
     elsif @user_board.cells[@computer_shot].render == "H"
-      computer_message = "was a hit"
+      @computer_message = "was a hit"
     elsif @user_board.cells[@computer_shot].render == "X"
-      computer_message = "has sunk a ship"
+      @computer_message = "has sunk a ship"
         #do we need an else statement?
     end
   end
@@ -65,9 +73,9 @@ class Turn
   def computer_board_render
     if @computer_board.cells[@user_shot].render == "M"
         user_message = "was a miss"
-      elsif @computer_board.cells[@user_shot].render == "H"
+    elsif @computer_board.cells[@user_shot].render == "H"
         user_message = "was a hit"
-      elsif @computer_board.cells[@user_shot].render == "X"
+    elsif @computer_board.cells[@user_shot].render == "X"
         user_message = "has sunk a ship"
     end
     puts " "
@@ -76,20 +84,4 @@ class Turn
     puts "Your shot on #{user_shot} #{user_message}."
     puts "My shot on #{computer_shot} #{computer_message}."
   end
-
-  def end_game
-    #loop do 
-    #turn
-    @computer_render = @computer_board.render.count "X"
-    @user_render = @user_board.render.count "X"
-    #loop
-    if @computer_render == 5
-      user wins
-      puts "You win!"
-    elsif @user_render == 5
-      computer wins
-      puts "Computer wins!"
-      #break
-    end
-    turn
-  end
+end
