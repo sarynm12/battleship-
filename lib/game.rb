@@ -12,42 +12,35 @@ class Game
               :user_sub
 
   def initialize
+    @user_input = nil
+  end
+
+  def start
+    while @user_input != "q"
+      print "Welcome to BATTLESHIP \n" +
+            "Enter p to play. Enter q to quit.\n >"
+      @user_input = gets.chomp
+      while !(@user_input == "q" || @user_input ==  "p")
+        puts "Invalid input, try again:"
+        puts ">"
+      end
+      if @user_input == "p"
+        setup
+        play_game
+      end
+    end
+    puts "Thanks for playing"
+  end
+
+  def setup
     @computer_board = Board.new
     @user_board = Board.new
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_sub = Ship.new("Submarine", 2)
     @user_cruiser = Ship.new("Cruiser", 3)
     @user_submarine = Ship.new("Submarine", 2)
-  end
-
-  def start
-    print "Welcome to BATTLESHIP \n" +
-          "Enter p to play. Enter q to quit.\n >"
-    setup
-  end
-
-  def setup
-    @user_input = nil
-    loop do
-      @user_input = gets.chomp
-      if @user_input == "q" || @user_input ==  "p"
-        valid_input
-      else
-        puts "Invalid input, try again:"
-        puts ">"
-      end
-    end
-  end
-
-  def valid_input
-    if @user_input == "q"
-      puts "Thanks for playing"
-      start
-    elsif @user_input == "p"
-      computer_place_ships
-      user_place_ships
-      play_game
-    end
+    computer_place_ships
+    user_place_ships
   end
 
   def computer_place_ships
@@ -127,6 +120,5 @@ class Game
     elsif user_render == 5
       puts "Computer wins!"
     end
-    start
   end
 end
