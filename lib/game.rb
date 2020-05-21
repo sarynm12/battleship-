@@ -107,7 +107,7 @@ class Game
     # if aflsjld
     #   turn
     # elsif
-    # end_game
+    # end_game method
 
   end
 

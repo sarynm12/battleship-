@@ -25,4 +25,8 @@ class TurnTest < Minitest::Test
     assert_equal false, first[0].empty?
   end
 
+  def test_user_shot
+    
+  end
+
 end
