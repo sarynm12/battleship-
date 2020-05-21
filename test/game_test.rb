@@ -21,10 +21,4 @@ class GameTest < Minitest::Test
                "Enter p to play. Enter q to quit.\n >"
     assert_equal expected, @game.welcome
   end
-
-  # def test_it_can_respond_to_invalid_input
-  #   @game.start
-  #   expected = "Invalid input, try again: \n" + ">"
-  #   assert_equal expected, @game.setup
-  # end
 end
