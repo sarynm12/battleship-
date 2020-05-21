@@ -76,7 +76,7 @@ class Turn
     puts " "
     puts "==============RESULTS=============="
 
-    puts "Your shot on #{user_shot} #{user_message}."
-    puts "My shot on #{computer_shot} #{computer_message}."
+    puts "Your shot on #{@user_shot} #{user_message}."
+    puts "My shot on #{@computer_shot} #{@computer_message}."
   end
 end

@@ -48,9 +48,9 @@ class Board
       numbers << coordinate.slice(1).to_i
     end
     if letters.uniq.count == 1 && (numbers.sort == numbers)
-      (numbers[0]..numbers[-1]).to_a.length == numbers.length
+      (numbers[0]..numbers[-1]).to_a == numbers
     elsif numbers.uniq.count == 1 && (letters.sort == letters)
-      (letters[0]..letters[-1]).to_a.length == letters.length
+      (letters[0]..letters[-1]).to_a == letters
     else
       false
     end
