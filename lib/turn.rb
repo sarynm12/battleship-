@@ -13,10 +13,6 @@ class Turn
   def initialize(computer_board, user_board)
     @computer_board = computer_board
     @user_board = user_board
-  #   @computer_cruiser = Ship.new("Cruiser", 3)
-  #   @computer_sub = Ship.new("Submarine", 2)
-  #   @user_cruiser = Ship.new("Cruiser", 3)
-  #   @user_sub = Ship.new("Submarine", 2)
   end
 
   def take_turn
@@ -66,7 +62,6 @@ class Turn
       @computer_message = "was a hit"
     elsif @user_board.cells[@computer_shot].render == "X"
       @computer_message = "has sunk a ship"
-        #do we need an else statement?
     end
   end
 

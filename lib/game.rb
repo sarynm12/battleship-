@@ -4,13 +4,23 @@ require 'pry'
 
 class Game
   attr_reader :welcome,
-              :user_input
+              :user_input,
+              :computer_board,
+              :user_board,
+              :computer_cruiser,
+              :computer_sub,
+              :user_cruiser,
+              :user_sub
 
   def initialize
     @welcome = "Welcome to BATTLESHIP \n" +
                "Enter p to play. Enter q to quit.\n >"
     @computer_board = Board.new
     @user_board = Board.new
+    @computer_cruiser = Ship.new("Cruiser", 3)
+    @computer_sub = Ship.new("Submarine", 2)
+    @user_cruiser = Ship.new("Cruiser", 3)
+    @user_sub = Ship.new("Submarine", 2)
   end
 
   def start
@@ -38,7 +48,7 @@ class Game
     elsif @user_input == "p"
       computer_place_ships
       user_place_ships
-    #play_game
+      play_game
     end
   end
 
@@ -102,18 +112,24 @@ class Game
   end
 
   def play_game
-    # turn = Turn.new
-    # turn.take_turn
-    # if aflsjld
-    #   turn
-    # elsif
-    # end_game method
-
+    computer_render = nil
+    user_render = nil
+    while !(computer_render == 5 || user_render == 5)
+      @turn = Turn.new(@computer_board, @user_board)
+      @turn.take_turn
+      computer_render = @computer_board.render.count "X"
+      user_render = @user_board.render.count "X"
+    end
+    end_game(computer_render, user_render)
   end
 
-
+  def end_game(computer_render, user_render)
+    if computer_render == 5
+      user wins
+      puts "You win!"
+    elsif user_render == 5
+      computer wins
+      puts "Computer wins!"
+    end
+  end
 end
-
-
-# def initialize(player_info)
-#   @ships = player_info[:ships]
